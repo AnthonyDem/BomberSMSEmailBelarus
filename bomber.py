@@ -57,7 +57,6 @@ a1_headers = {
     'Sec-Fetch-Site': 'same-origin',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Dest': 'empty',
-    'Referer': 'https://asmp.a1.by/asmp/registration?userRequestURL=https%253A%252F%252Fwww.a1.by%252Fru%252Fcorporate%252Fmobile-and-fixed-lines%252Fservices%252Fbase-services%252Flichnyj-kabinet%252Fp%252Flichnyj-kabinet%253FfromSSO%253Dtrue',
     'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7'
 }
 
@@ -108,7 +107,7 @@ async def phone_bomber(phone):
 
 
 if __name__ == '__main__':
-    option = int(input(colored("Chose desirable option... [1] - Email bomber, [2] - phone bomber \n", "blue")))
+    option = int(input(colored("Chose desirable option... [1] - Email bomber, [2] - phone bomber: \n", "blue")))
     count = int(input(colored("How much iterations u want? ", "blue")))
     if option == 1:
         email = input(colored("Enter target email:", "yellow"))
