@@ -60,3 +60,20 @@ delivio_headers = {
   'referer': 'https://delivio.by/login',
   'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7',
 }
+
+
+papa_jhons_headers = {
+  'authority': 'api.papajohns.by',
+  'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"',
+  'accept': 'application/json',
+  'content-type': 'application/json',
+  'sec-ch-ua-mobile': '?0',
+  'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
+  'sec-ch-ua-platform': '"macOS"',
+  'origin': 'https://papajohns.by',
+  'sec-fetch-site': 'same-site',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  'referer': 'https://papajohns.by/',
+  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7',
+}

